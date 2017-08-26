@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate!, except: [:new, :create]
 
   def index
     @users = User.all
@@ -18,7 +19,8 @@ class UsersController < ApplicationController
     if @user.save
       #login user after creating them
       #send verification email
-      #log_in @user
+      log_in @user
+      flash.now[:notice] = 'User sucessfully created'
       redirect_to user_path(@user) || root_path
     else
       render :new
