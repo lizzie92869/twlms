@@ -20,7 +20,6 @@ class UsersController < ApplicationController
       #login user after creating them
       #send verification email
       log_in @user
-      flash.now[:notice] = 'User sucessfully created'
       redirect_to user_path(@user) || root_path
     else
       render :new
