@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate!, except: [:new, :create]
   before_action :force_no_login, only: [:new]
-  before_action :authorize_user, except: [:index]
+  before_action :authorize_user, except: [:index, :new]
 
   def index
     @users = User.all
