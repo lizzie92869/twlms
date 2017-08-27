@@ -2,7 +2,7 @@ class UserPolicy < ApplicationPolicy
 
   # Only allow user to view own profile unless admin
   def show?
-   record == user
+   user.admin? || record == user
   end
 
   def edit?
@@ -14,7 +14,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    false
+    user.admin?
   end
 
   def destroy?
@@ -22,6 +22,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    false
+    user.admin?
   end
 end

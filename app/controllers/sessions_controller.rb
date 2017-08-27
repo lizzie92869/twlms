@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
     if !auth.nil?
       user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.email = auth['info']['email']
+        # generate random password
+        u.password = User.new_token
       end
       if user
         log_in user
