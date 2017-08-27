@@ -4,3 +4,14 @@
 <% if content_for?(:keywords) %>
   <meta name="keywords" content="<%= yield(:keywords) %>">
 <% end %>
+
+
+
+<% #https://dev.twitter.com/cards/markup %>
+<% if content_for?(:twitter) %>
+
+<% end %>
+<% #https://developers.facebook.com/docs/sharing/webmasters %>
+<% if content_for?(:facebook) %>
+
+<% end %>

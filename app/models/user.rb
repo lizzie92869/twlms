@@ -7,7 +7,9 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  # Omniauth will not validate as has_secure_password added in validations which you have to disable
+  # password also need to allow for blank option to avoid errors when saving
+  has_secure_password(validations: false)
+  validates :password, length: { minimum: 6 }, allow_blank: true
 
 end

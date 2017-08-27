@@ -7,14 +7,28 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user_path(user)
+    #onmiauth Login
+    if !auth.nil?
+      user = User.find_or_create_by(uid: auth['uid']) do |u|
+        u.email = auth['info']['email']
+      end
+      if user
+        log_in user
+        flash.now[:notice] = "Welcome #{user.try(:email)}"
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render :new
+      user = User.find_by(email: params[:session][:email].downcase)
+      if user && user.authenticate(params[:session][:password])
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_to user_path(user)
+      else
+        flash.now[:danger] = 'Invalid email/password combination'
+        render :new
+      end
     end
   end
 
@@ -22,5 +36,12 @@ class SessionsController < ApplicationController
   def destroy
     log_out if logged_in?
     redirect_to root_path
+  end
+
+  private
+
+  # Omniauth hash
+  def auth
+    request.env['omniauth.auth']
   end
 end

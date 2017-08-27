@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post '/sign-in', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  #omniauth
+  get '/auth/facebook/callback', to: 'sessions#create'
+
   get '/sign-up', to: 'users#new'
   resources :users
 end
