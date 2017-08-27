@@ -52,7 +52,14 @@ module SessionsHelper
   def authenticate!
     if !logged_in?
       flash.now[:notice] = 'Page access requires you to log in'
-      redirect_to new_session_path
+      redirect_to sign_in_path
+    end
+  end
+
+  # Force user to not be logged_in to view page (signin/signup)
+  def force_no_login
+    if logged_in?
+      redirect_to root_path, notice: 'You are already logged in'
     end
   end
 end

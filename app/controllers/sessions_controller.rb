@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :force_no_login, only: [:new]
+
   # Login form
   def new
   end
