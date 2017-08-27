@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include Tokenable
 
+  has_many :weights
+
   # Defaults to :user => 1 in db
   enum role: [:admin, :user, :member]
 
