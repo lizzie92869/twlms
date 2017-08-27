@@ -28,3 +28,4 @@
 app/stylesheets/.sass-cache
 app/stylesheets/.sass-cache/*
 config/database.yml
+.env

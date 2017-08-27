@@ -13,6 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 
 group :development, :test do
