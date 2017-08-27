@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate!, except: [:new, :create]
   before_action :force_no_login, only: [:new]
+  before_action :authorize_user, except: [:index]
 
   def index
     @users = User.all
+    authorize @users
   end
 
   def show
@@ -54,5 +56,9 @@ class UsersController < ApplicationController
       :email,
       :password
     )
+  end
+
+  def authorize_user
+    authorize @user
   end
 end
