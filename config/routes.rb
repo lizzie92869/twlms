@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :weights
   root 'welcome#home'
 
   get '/sign-in', to: 'sessions#new'
@@ -12,4 +11,5 @@ Rails.application.routes.draw do
 
   get '/sign-up', to: 'users#new'
   resources :users
+  resources :weights
 end

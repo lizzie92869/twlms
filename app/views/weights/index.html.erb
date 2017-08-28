@@ -1,0 +1,10 @@
+<%= link_to 'Log Weight', new_weight_path %>
+<ul>
+  <% if !@weights.blank?%>
+    <% @weights.each do |w| %>
+      <li><%= w.date.strftime('%b %e %l:%M %p') %> - <%= w.amount %></li>
+    <% end %>
+  <% else %>
+    <li>No Weights Yet</li>
+  <% end %>
+</ul>
