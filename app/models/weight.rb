@@ -1,6 +1,10 @@
 class Weight < ApplicationRecord
   belongs_to :user
 
+  validates :user_id, presence: true, numericality: true
+  validates :amount, presence: true, numericality: true
+  validates :date, presence: true
+
   default_scope { order(date: :desc) }
 
   #weights from today, don't use 1.day.ago ase it adds in timestamp
