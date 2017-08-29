@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate!, except: [:new, :create]
   before_action :force_no_login, only: [:new]
-  before_action :authorize_user, except: [:index, :new]
+  before_action :authorize_user, except: [:index, :new, :create]
 
   def index
     @users = User.all
@@ -20,10 +20,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #login user after creating them
       #send verification email
+      UserMailer.verification_email(@user).deliver_later
+      #login user after creating them
       log_in @user
-      redirect_to user_path(@user) || root_path
+      redirect_to user_path(@user)
     else
       render :new
     end
