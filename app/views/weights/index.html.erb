@@ -1,4 +1,5 @@
 <%= link_to 'Log Weight', new_weight_path %>
+<div class="chart-holder"><canvas id="myChart" width="400" height="400"></canvas></div>
 <ul>
   <% if !@weights.blank?%>
     <% @weights.each do |w| %>

@@ -4,8 +4,9 @@
 <title><%= yield(:title) %>TWMLS</title>
 <%= render 'layouts/metatags/defaultmeta' %><%= csrf_meta_tags %>
 <%= stylesheet_link_tag 'application' %>
-</head><body>
+</head><body class="<%= controller_name %> <%= action_name %>">
     <%= render 'shared/alert_messages' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js'></script>
 </body></html>

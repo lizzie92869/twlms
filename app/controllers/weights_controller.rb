@@ -4,7 +4,12 @@ class WeightsController < ApplicationController
   before_action :authenticate!
 
   def index
-    @weights = current_user.weights
+    @weights = @current_user.weights
+    respond_to do |f|
+      f.html{ }
+      f.json{ render json: @weights }
+    end
+
   end
 
   def show
@@ -43,7 +48,7 @@ class WeightsController < ApplicationController
   private
 
   def set_weight
-    @weight = Weight.find_by(user_id: current_user.id, id: params[:id])
+    @weight = Weight.find_by(user_id: params[:user_id], id: params[:id])
   end
 
   def weight_params
