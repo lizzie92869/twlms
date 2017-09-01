@@ -245,6 +245,7 @@ DEPENDENCIES
   dotenv-rails
   guard-livereload (~> 2.5)
   jquery-rails
+  jwt
   listen (>= 3.0.5, < 3.2)
   omniauth
   omniauth-facebook

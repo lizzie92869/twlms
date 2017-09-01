@@ -38,5 +38,7 @@ module Twlms
     }
     # Don't generate system test files.
     config.generators.system_tests = nil
+    # Add lib dir to autolaod path
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'pundit'
+gem 'jwt'
 
 
 group :development, :test do
