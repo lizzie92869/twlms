@@ -22,9 +22,11 @@ class SessionsController < ApplicationController
         redirect_to root_path
       end
     else
+      # normal session login
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
         log_in user
+        #set or forget persistant cookie token
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_to root_path
       else
